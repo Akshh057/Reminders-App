@@ -71,7 +71,7 @@ const Login = (props) => {
   const signIn = async (e) => {
     e.preventDefault();
     try {
-      const loggedUser = await axios.post("https://eday-reminders.herokuapp.com/login", loginData);
+      const loggedUser = await axios.post("https://eday-reminders.herokuapp.com/users/login", loginData);
       dispatch({
         type: LOGIN_USER,
         payload: loggedUser.data,
