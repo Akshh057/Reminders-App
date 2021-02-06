@@ -27,7 +27,7 @@ const UpdateReminder = (props) => {
                 body: JSON.stringify(updateReminder),
             }
         }
-        const res = await axios.patch('http://localhost:5000/users/updateReminder', updateReminder, config);
+        const res = await axios.patch('https://eday-reminders.herokuapp.com/users/updateReminder', updateReminder, config);
         console.log(res.data);
         // console.log(updateReminder);
         // console.log(state.user);

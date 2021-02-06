@@ -37,7 +37,7 @@ const Write = () => {
 
     const onSave = async (e) => {
         e.preventDefault();
-        const res = await axios.post('http://localhost:5000/users/feedback', feedback);
+        const res = await axios.post('https://eday-reminders.herokuapp.com/users/feedback', feedback);
         console.log(res.data);
     }
     return (

@@ -31,7 +31,7 @@ const CreateReminder = () => {
                 body: JSON.stringify(newReminder),
             }
         }
-        const res = await axios.post('http://localhost:5000/users/newReminder', newReminder, config);
+        const res = await axios.post('https://eday-reminders.herokuapp.com/users/newReminder', newReminder, config);
         console.log(res.data);
         console.log(newReminder);
         console.log(state.user);

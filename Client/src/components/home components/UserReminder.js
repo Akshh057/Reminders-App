@@ -24,7 +24,7 @@ const UserReminder = () => {
                 }
             }
 
-            let remRes = await axios.get('http://localhost:5000/users/fetchReminder', { params: { email } }, config);
+            let remRes = await axios.get('https://eday-reminders.herokuapp.com/users/fetchReminder', { params: { email } }, config);
             console.log(remRes.data);
             setViewReminder(
                 remRes.data,

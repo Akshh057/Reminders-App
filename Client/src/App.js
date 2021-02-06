@@ -37,12 +37,12 @@ function App() {
       setAuthToken(token);
 
       //check if token is valid through API and return true or false.
-      const tokenRes = await axios.post("http://localhost:5000/users/tokenIsValid", null);
+      const tokenRes = await axios.post("https://eday-reminders.herokuapp.com//users/tokenIsValid", null);
 
       //if token is valid then get user data from private route
       // and send response data from API to state using dispatch
       if (tokenRes.data) {
-        const user = await axios.get("http://localhost:5000/users");
+        const user = await axios.get("https://eday-reminders.herokuapp.com//users");
         console.log(user.data);
         dispatch({
           type: LOAD_USER,
