@@ -1,0 +1,76 @@
+.landing__pageab{
+    height: 80vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #fffbfc;
+    /* border: 1px solid red; */
+    }
+    .landing__page__leftab{
+      height: 30vh;
+      width: 39%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-left: 80px;
+      display: flex;
+      flex-direction: column;
+      /* border: 1px solid red; */
+    }
+    .landing__page__rightab{
+      height: 60vh;
+      width: 40%;
+      background: url('./about.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      /* border: 1px solid red; */
+    }
+    .infoab{
+      height:8vh;
+      font-size: 20px;
+      /* border: 1px solid red; */
+    }
+    .info2ab p{
+    font-size: 18px;
+    }
+    .info__btnab{
+      height: 4vh;
+      width: 150px;
+      background-color: #fc9842;
+      border: none;
+      color: white;
+      font-weight: bolder;
+    }
+    @media(max-width:768px)
+    {
+        h2{
+            /* font-size: 20px; */
+            font-weight: 400;
+            text-transform: capitalize;
+          }
+          .infoab{
+          text-align: center
+          }
+          .info2ab{
+            text-align: center;
+            padding: 1rem;;
+          }
+          .infobtnab{
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          }
+          .landing__pageab{
+            flex-direction: column-reverse;
+          }
+          .landing__page__rightab{
+            height: 40vh;
+            width: 80%;
+          }
+          .landing__page__leftab{
+            margin-left: 0;
+            height: 39vh;
+            width: 100%;
+          }
+    }

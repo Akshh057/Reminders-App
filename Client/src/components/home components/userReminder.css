@@ -1,0 +1,52 @@
+.userReminder__main{
+    min-height: 80vh;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(315px,1fr)); 
+    place-items: center;
+    grid-gap: 50px;
+    padding:1em;
+    background-color: #fffbfc;
+}
+
+.userReminder__main > div{
+    /* display: flex;
+    justify-content: space-evenly; */
+    height: 50vh;
+    width: 30vw;
+    border-radius: 5px;
+    /* backdrop-filter: blur(10px); */
+    box-shadow: 0 14px 28px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.22);
+}
+.userReminder__main div > p{
+   padding: 0.2rem;
+    text-transform: capitalize;
+    font-size: 15px;
+    font-weight: bolder;
+}
+.userReminder__main div > button{
+    height: 4vh;
+    width: 80px;
+    color: white;
+    background-color: #fc9842;
+    background-image: linear-gradient(315deg, #fc9842 0%, #fe5f75 74%);
+    border: none;
+    margin-left: 10px;
+}
+.link1_button{
+    height: 4vh;
+    width: 80px;
+    color: white;
+    background-color: #fc9842;
+    background-image: linear-gradient(315deg, #fc9842 0%, #fe5f75 74%);
+    border: none;
+    margin-left: 10px;
+}
+@media(max-width:768px){
+    .userReminder__main > div{
+        height: 59vh;
+        width: 70vw;
+    }
+}
+ 
+ 

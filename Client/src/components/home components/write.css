@@ -1,0 +1,104 @@
+.write__main{
+    height: 81vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.write__left{
+    height: 98%;
+    width: 45%;
+    /* background: url('user.png');
+    background-size: contain;
+    background-repeat: no-repeat; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.write__left img{
+    height: 60vh;
+    width: 95%;
+}
+.write__right{
+    height: 98%;
+    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+.write__card{
+    height: 60vh;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 14px 28px rgba(0,0,0,.25), 0 10px 10px rgba(0,0,0,.22);
+    /* border: 1px solid red; */
+}
+.write__heading{
+    height: 8vh;
+    width: 100%;
+    background-color: #fc9842;
+    background-image: linear-gradient(315deg, #fc9842 0%, #fe5f75 74%);
+    color:  white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.write__details form{
+    height: 100%;
+    width: 100%;
+    background-color: #fff5f5;
+    color: #FF7043;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    justify-content: center;
+    flex-direction: column;
+    /* border: 1px solid red; */
+}
+#f2{
+    margin-top: 6px;
+    margin-left: 20px;
+}
+.feedback__btn{
+    border-radius: 20px;
+    border: 1px solid rgba(245, 149, 125, 0.897);
+    background: transparent;
+    color:black;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: 0.3s ease-in-out;
+    margin-top: 20px;
+}
+@media(max-width:768px)
+{
+    .write__main{
+        flex-direction: column-reverse;
+      }
+      .write__right{
+        height: 70vh;
+        width: 100%;
+        align-items: unset;
+      }
+      .write__left{
+        display: none;
+      }
+      .write__card{
+          height: 70vh;
+          width: 90%;
+      }
+      .write__details form{
+          height: 62vh;
+          padding: 1rem;
+          justify-content: space-evenly;
+      }
+      .write__details form > div{
+          margin-top: 0px !important;
+          flex-direction: column !important;
+      }
+    
+}
