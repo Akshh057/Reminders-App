@@ -5,7 +5,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 const Footer = () => {
   return <div className="footer">
     <p>
-      Created with <FavoriteIcon className="heart" fontSize="small" /> by Sanyam
+      E'DAY <FavoriteIcon className="heart" fontSize="small" /> REMINDERS
     </p>
   </div>;
 };
