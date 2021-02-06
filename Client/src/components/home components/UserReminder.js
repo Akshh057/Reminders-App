@@ -2,7 +2,6 @@ import React, { useEffect, useContext, useState } from 'react'
 import './userReminder.css'
 import axios from 'axios'
 import UserAuthContext from '../../context/UserAuthContext';
-import ViewReminder from './ViewReminder';
 import { Link, withRouter } from "react-router-dom";
 import moment from 'moment'
 const UserReminder = () => {
@@ -81,7 +80,7 @@ const UserReminder = () => {
                                 'x-auth-token': localStorage.getItem('token'),
                             }
                         }
-                        const res = await axios.delete('http://localhost:5000/users/deleteReminder', { params: { id } }, config);
+                        const res = await axios.delete('https://eday-reminders.herokuapp.com/users/deleteReminder', { params: { id } }, config);
                         console.log(res.data);
                         setViewReminder(
                             viewReminder.filter((w) => w._id != id)

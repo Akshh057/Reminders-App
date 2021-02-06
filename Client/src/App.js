@@ -3,7 +3,6 @@ import axios from 'axios';
 import { BrowserRouter, Switch, Route, Router } from "react-router-dom";
 //import "./App.css";
 import Login from "./components/Login";
-import Register from "./components/Register";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import About from "./components/About";
@@ -15,11 +14,9 @@ import UserAuthContext from './context/UserAuthContext';
 import { LOAD_USER } from './context/reducer';
 import CreateReminder from "./components/home components/CreateReminder";
 import Write from "./components/home components/Write";
-import Middleware from "./components/home components/Middleware";
 import UserReminder from "./components/home components/UserReminder";
 import UpdateReminder from "./components/home components/UpdateReminder";
 import Userprofile from "./components/home components/Userprofile";
-import RefreshRoute from './components/RefreshRoute'
 
 function App() {
   const { dispatch } = useContext(UserAuthContext);
