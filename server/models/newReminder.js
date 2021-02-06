@@ -95,6 +95,37 @@ newReminderSchema.statics.sendNotifications = function (callback) {
                 }
                 sendMail();
             }
+            else if (newReminder.sendOnEmail) {
+                const options = {
+                    from: 'reminder401@outlook.com',
+                    to: newReminder.email,
+                    subject: newReminder.title,
+                    text: `${newReminder.description}`,
+                };
+                transporter.sendMail(options, function (err, info) {
+                    if (err) {
+                        console.log(err);
+                        return;
+                    }
+                    console.log(`sent ${info.response}`);
+                })
+            }
+            else if (newReminder.sendOnMobile) {
+                async function sendMail() {
+
+                    try {
+                        const res = await fast2sms.sendMessage({
+                            authorization: process.env.SMS_API_KEY,
+                            message: "Hello your reminder is : " + newReminder.description,
+                            numbers: [newReminder.mobile],
+                        })
+                        console.log("enter");
+                    } catch (err) {
+                        console.log(err);
+                    }
+                }
+                sendMail();
+            }
 
 
             // console.log(`email sent to ${newReminder.email}`);
