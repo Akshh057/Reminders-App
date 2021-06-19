@@ -12,7 +12,16 @@ const UserReminder = () => {
         email = state.user.email;
     else
         email = null;
-
+        let token = localStorage.getItem('token');
+        axios.interceptors.request.use(
+          config => {
+              config.headers.authorization = `Bearer ${token}`;
+              return config;
+          },
+          error => {
+              return Promise.reject(error);
+          }
+        )
     useEffect(() => {
         const fetchReminder = async () => {
             const config = {

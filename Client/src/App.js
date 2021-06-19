@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from "react";
-import axios from 'axios';
+import axios from "axios";
 import { BrowserRouter, Switch, Route, Router } from "react-router-dom";
 //import "./App.css";
 import Login from "./components/Login";
@@ -8,10 +8,10 @@ import Header from "./components/Header";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import setAuthToken from './context/setAuthToken';
+import setAuthToken from "./context/setAuthToken";
 //import UserAuthProvider from './context/UserAuthProvider';
-import UserAuthContext from './context/UserAuthContext';
-import { LOAD_USER } from './context/reducer';
+import UserAuthContext from "./context/UserAuthContext";
+import { LOAD_USER } from "./context/reducer";
 import CreateReminder from "./components/home components/CreateReminder";
 import Write from "./components/home components/Write";
 import UserReminder from "./components/home components/UserReminder";
@@ -24,31 +24,44 @@ function App() {
   useEffect(() => {
     const checkLoggedIn = async () => {
       //get auth token if exist from last visit/session from ls
-      let token = localStorage.getItem('token');
+      let token = localStorage.getItem("token");
       if (token === null) {
-        localStorage.setItem('token', '');
-        token = ""
+        localStorage.setItem("token", "");
+        token = "";
       }
 
       //setAuthToken in header for all req.
       setAuthToken(token);
 
       //check if token is valid through API and return true or false.
-      const tokenRes = await axios.post("https://eday-reminders.herokuapp.com//users/tokenIsValid", null);
+      axios.interceptors.request.use(
+        (config) => {
+          config.headers.authorization = `Bearer ${token}`;
+          return config;
+        },
+        (error) => {
+          return Promise.reject(error);
+        }
+      );
+      const tokenRes = await axios.post(
+        "https://eday-reminders.herokuapp.com//users/tokenIsValid",
+        null
+      );
 
       //if token is valid then get user data from private route
       // and send response data from API to state using dispatch
       if (tokenRes.data) {
-        const user = await axios.get("https://eday-reminders.herokuapp.com//users");
+        const user = await axios.get(
+          "https://eday-reminders.herokuapp.com//users"
+        );
         console.log(user.data);
         dispatch({
           type: LOAD_USER,
           payload: user.data,
         });
       }
-    }
+    };
     checkLoggedIn();
-
   }, []);
 
   return (
@@ -69,7 +82,6 @@ function App() {
         </Switch>
         <Footer />
       </BrowserRouter>
-
     </>
   );
 }
