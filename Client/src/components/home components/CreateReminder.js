@@ -4,7 +4,7 @@ import axios from "axios";
 import UserAuthContext from "../../context/UserAuthContext";
 import API from '../../axiosCalls'
 //import create from "./create.png";
-const CreateReminder = () => {
+const CreateReminder = ({ history }) => {
   const { state } = useContext(UserAuthContext);
   console.log(state)
   const [newReminder, setNewReminder] = useState({
@@ -26,7 +26,7 @@ const CreateReminder = () => {
     console.log(newReminder);
   }, [newReminder]);
   const save = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     const config = {
       headers: {
         "Content-type": "application/json",
@@ -44,10 +44,7 @@ const CreateReminder = () => {
       }
     );
     const res = await API.createReminder(newReminder, config)
-    alert("Reminder Created!!");
-    console.log(res.data);
-    console.log(newReminder);
-    console.log(state.user);
+    res.data && history.push("/userreminder")
   };
   return (
     <div className="createReminder__main1">
@@ -73,10 +70,6 @@ const CreateReminder = () => {
                 onFocus={(e) => (e.target.type = "datetime-local")}
                 onBlur={(e) => (e.target.type = "text")}
               />
-              {/* <input type="text" name="time" placeholder=" Enter Time" onChange={insert}
-                                onFocus={(e) => e.target.type = "time"}
-                                onBlur={(e) => e.target.type = "text"}
-                            /> */}
               <input
                 type="text"
                 name="description"
