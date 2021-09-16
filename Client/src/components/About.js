@@ -1,16 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from "react-router-dom";
-import UserAuthContext from "../context/UserAuthContext";
 import './About.css';
 const About = () => {
-    const str = useContext(UserAuthContext);
     return (
         <div className="landing__pageab">
             <div className="landing__page__leftab">
                 <div className="infoab">
                     <h2>
                         What we do
-              </h2>
+                    </h2>
                 </div>
                 <div className="info2ab">
                     <p>
@@ -22,7 +20,7 @@ const About = () => {
                     <Link to='/login'>
                         <button className="info__btnab">
                             Get Started!
-            </button>
+                        </button>
                     </Link>
                 </div>
             </div>

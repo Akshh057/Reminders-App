@@ -1,17 +1,10 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext } from 'react'
 import UserAuthContext from '../../context/UserAuthContext';
 import './write.css';
 import write from './feedback.png'
 import axios from 'axios';
 const Write = () => {
     const { state } = useContext(UserAuthContext);
-
-    // const [feedback, updateFeedback] = useState(
-    //     {
-    //         feed: '',
-    //         choice: '',
-    //     }
-    // )
     let id1, feed = '';
     if (state.user) {
         id1 = state.user.id;
@@ -26,24 +19,21 @@ const Write = () => {
         choice: '',
         _id: id1,
     }
+    console.log(feed)
     const insert = (e) => {
-        // updateFeedback({
-        //     ...feedback,
-        //     [e.target.name]: e.target.value,
-        // });
         feedback[e.target.name] = e.target.value;
         console.log(feedback);
     }
 
     const onSave = async (e) => {
         e.preventDefault();
-        const res = await axios.post('https://eday-reminders.herokuapp.com/users/feedback', feedback);
+        const res = await axios.post('http://localhost:5000/users/feedback', feedback);
         console.log(res.data);
     }
     return (
         <div className="write__main">
             <div className="write__left">
-                <img src={write} />
+                <img src={write} alt="feedback" />
             </div>
             <div className="write__right">
                 <div className="write__card">
@@ -53,7 +43,7 @@ const Write = () => {
                                 <div className="write__heading">
                                     <h1>
                                         Feedback Form
-                    </h1>
+                                    </h1>
                                 </div>
                                 <div className="write__details">
                                     <form onSubmit={onSave}>

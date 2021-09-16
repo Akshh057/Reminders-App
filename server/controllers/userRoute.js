@@ -143,7 +143,8 @@ module.exports = {
       res.json({
         id: user._id,
         name: user.name,
-        email: user.email
+        email: user.email,
+        mobile:user.mobile
       });
     } catch (err) {
       res.status(500).json({ error: err.message });

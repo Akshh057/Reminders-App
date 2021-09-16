@@ -18,7 +18,7 @@ const Userprofile = () => {
     return (
         <div className="user__main">
             <div className="user__left">
-                <img src={user} />
+                <img src={user} alt="user" />
             </div>
             <div className="user__right">
                 <div className="user__card">

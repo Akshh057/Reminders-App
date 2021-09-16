@@ -4,6 +4,7 @@ import axios from 'axios'
 import UserAuthContext from '../../context/UserAuthContext';
 import { Link, withRouter } from "react-router-dom";
 import moment from 'moment'
+import API from '../../axiosCalls';
 const UserReminder = () => {
     const { state } = useContext(UserAuthContext);
     const [viewReminder, setViewReminder] = useState([]);
@@ -12,16 +13,16 @@ const UserReminder = () => {
         email = state.user.email;
     else
         email = null;
-        let token = localStorage.getItem('token');
-        axios.interceptors.request.use(
-          config => {
-              config.headers.authorization = `Bearer ${token}`;
-              return config;
-          },
-          error => {
-              return Promise.reject(error);
-          }
-        )
+    let token = localStorage.getItem('token');
+    axios.interceptors.request.use(
+        config => {
+            config.headers.authorization = `Bearer ${token}`;
+            return config;
+        },
+        error => {
+            return Promise.reject(error);
+        }
+    )
     useEffect(() => {
         const fetchReminder = async () => {
             const config = {
@@ -32,7 +33,7 @@ const UserReminder = () => {
                 }
             }
 
-            let remRes = await axios.get('https://eday-reminders.herokuapp.com/users/fetchReminder', { params: { email } }, config);
+            let remRes = await API.fetchReminder(email, config)
             console.log(remRes.data);
             setViewReminder(
                 remRes.data,
@@ -40,7 +41,7 @@ const UserReminder = () => {
         }
         fetchReminder();
 
-    }, [email != null])
+    }, [email])
 
     var colors = [
         {
@@ -76,10 +77,8 @@ const UserReminder = () => {
                 viewReminder.map((e, index) => {
                     const random_color = colors[Math.floor(
                         Math.random() * colors.length)];
-                    let n = new Date().getTimezoneOffset();
                     const delReminder = async () => {
                         const id = e._id;
-                        console.log(id);
                         const config =
                         {
                             headers:
@@ -89,15 +88,15 @@ const UserReminder = () => {
                                 'x-auth-token': localStorage.getItem('token'),
                             }
                         }
-                        const res = await axios.delete('https://eday-reminders.herokuapp.com/users/deleteReminder', { params: { id } }, config);
+                        const res = await API.deleteReminder(id, config)
                         console.log(res.data);
                         setViewReminder(
-                            viewReminder.filter((w) => w._id != id)
+                            viewReminder.filter((w) => w._id !== id)
                         )
                         console.log(viewReminder);
                     }
                     return (
-                        <div>
+                        <div key={`${e.title}${index}`}>
                             <div style={{ backgroundColor: random_color.backgroundColor, backgroundImage: random_color.backgroundImage, color: 'white', height: "5vh", minWidth: '20vw' }}>
                                 <h3 style={{ textAlign: 'center' }}>
                                     Reminder: {index + 1}
@@ -128,11 +127,11 @@ const UserReminder = () => {
                                 }}>
                                     <button className="link1_button" style={{ backgroundColor: random_color.backgroundColor, backgroundImage: random_color.backgroundImage }}>
                                         Edit
-                                </button>
+                                    </button>
                                 </Link>
                                 <button onClick={delReminder} style={{ backgroundColor: random_color.backgroundColor, backgroundImage: random_color.backgroundImage }}>
                                     Delete
-                </button>
+                                </button>
                             </div>
                         </div>
                     )

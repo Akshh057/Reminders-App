@@ -52,7 +52,7 @@ const Login = (props) => {
   const signUp = async (e) => {
     e.preventDefault();
     try {
-      const registeredUser = await axios.post("https://eday-reminders.herokuapp.com/users/register", registerData);
+      const registeredUser = await axios.post("http://localhost:5000/users/register", registerData);
       dispatch({
         type: REGISTER_USER,
         payload: registeredUser.data,
@@ -71,7 +71,7 @@ const Login = (props) => {
   const signIn = async (e) => {
     e.preventDefault();
     try {
-      const loggedUser = await axios.post("https://eday-reminders.herokuapp.com/users/login", loginData);
+      const loggedUser = await axios.post("http://localhost:5000/users/login", loginData);
       dispatch({
         type: LOGIN_USER,
         payload: loggedUser.data,
@@ -80,7 +80,7 @@ const Login = (props) => {
       dispatch({
         type: LOGIN_FAILED,
       })
-      error.response.data.msg && setServerError(error.response.data.msg);
+      error.response?.data?.msg && setServerError(error.response.data.msg);
       console.log(serverError)
     }
   }
@@ -195,7 +195,7 @@ const Login = (props) => {
                   setServerError('');
                   setActive('right_panel_active');
                 }}
-                class="ghost"
+                className="ghost"
                 id="signUp">
                 Sign Up
               </button>

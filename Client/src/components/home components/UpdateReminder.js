@@ -1,14 +1,13 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./createReminder.css";
 import axios from "axios";
-import UserAuthContext from "../../context/UserAuthContext";
+import API from "../../axiosCalls";
 const UpdateReminder = (props) => {
-  const { state } = useContext(UserAuthContext);
   const [updateReminder, setupdateReminder] = useState({
-    title: props.location.existinRem.title,
-    d: props.location.existinRem.date,
-    description: props.location.existinRem.description,
-    _id: props.location.existinRem.id,
+    title: props?.location?.existinRem?.title,
+    d: props.location?.existinRem?.date,
+    description: props.location?.existinRem?.description,
+    _id: props?.location?.existinRem?.id,
   });
   const insert = (e) => {
     setupdateReminder({
@@ -16,9 +15,6 @@ const UpdateReminder = (props) => {
       [e.target.name]: e.target.value,
     });
   };
-  useEffect(() => {
-    console.log(updateReminder);
-  }, [updateReminder]);
   const save = async (e) => {
     e.preventDefault();
     const config = {
@@ -37,17 +33,8 @@ const UpdateReminder = (props) => {
         return Promise.reject(error);
       }
     );
-    const res = await axios.patch(
-      "https://eday-reminders.herokuapp.com/users/updateReminder",
-      updateReminder,
-      config
-    );
-    console.log(res.data);
-    // console.log(updateReminder);
-    // console.log(state.user);
-    // var a = document.getElementById('phone').checked;
-    // var b = document.getElementById('Email').checked;
-    // console.log(a, b);
+    const res = await API.updateReminders(updateReminder, config)
+    res.data && props.history.push("/")
   };
   console.log(props);
   return (
@@ -76,10 +63,6 @@ const UpdateReminder = (props) => {
                 onBlur={(e) => (e.target.type = "text")}
                 value={updateReminder.d}
               />
-              {/* <input type="text" name="time" placeholder=" Enter Time" onChange={insert}
-                                onFocus={(e) => e.target.type = "time"}
-                                onBlur={(e) => e.target.type = "text"}
-                            /> */}
               <input
                 type="text"
                 name="description"
@@ -103,7 +86,7 @@ const UpdateReminder = (props) => {
                   id="Email"
                   className="createreminder__check"
                 />
-                <label for="Email">Email</label>
+                <label htmlfor="Email">Email</label>
               </div>
               <input type="submit" />
             </form>

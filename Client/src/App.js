@@ -1,15 +1,13 @@
 import React, { useEffect, useContext } from "react";
 import axios from "axios";
-import { BrowserRouter, Switch, Route, Router } from "react-router-dom";
-//import "./App.css";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Home from "./components/Home";
 import Header from "./components/Header";
 import About from "./components/About";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-import setAuthToken from "./context/setAuthToken";
-//import UserAuthProvider from './context/UserAuthProvider';
+import setAuthToken from "./context/setAuthToken"
 import UserAuthContext from "./context/UserAuthContext";
 import { LOAD_USER } from "./context/reducer";
 import CreateReminder from "./components/home components/CreateReminder";
@@ -44,7 +42,7 @@ function App() {
         }
       );
       const tokenRes = await axios.post(
-        "https://eday-reminders.herokuapp.com//users/tokenIsValid",
+        "http://localhost:5000/users/tokenIsValid",
         null
       );
 
@@ -52,7 +50,7 @@ function App() {
       // and send response data from API to state using dispatch
       if (tokenRes.data) {
         const user = await axios.get(
-          "https://eday-reminders.herokuapp.com//users"
+          "http://localhost:5000/users"
         );
         console.log(user.data);
         dispatch({
@@ -62,7 +60,7 @@ function App() {
       }
     };
     checkLoggedIn();
-  }, []);
+  }, [dispatch]);
 
   return (
     <>

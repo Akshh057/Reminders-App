@@ -41,11 +41,8 @@ const newReminderSchema = new mongoose.Schema({
     }
 });
 newReminderSchema.methods.requiresNotification = function (date) {
-    console.log(`Current Time:${date} Remind at:${this.date}`);
+    // console.log(`Current Time:${date} Remind at:${this.date}`);
     return this.date >= new Date(Date.now() - 1000) && this.date < new Date(Date.now() + 60 * 900);
-    // return Math.round(moment.duration(moment(this.time).tz(this.timeZone).utc()
-    //   .diff(moment(date).utc())
-    // ).asMinutes()) === this.notification;
 };
 newReminderSchema.statics.sendNotifications = function (callback) {
     // now
@@ -54,7 +51,6 @@ newReminderSchema.statics.sendNotifications = function (callback) {
         .find()
         .then(function (newReminders) {
             newReminders = newReminders.filter(function (newReminder) {
-                // console.log(`serachDate:${searchDate}`);
                 return newReminder.requiresNotification(searchDate);
             });
             if (newReminders.length > 0) {
@@ -62,9 +58,7 @@ newReminderSchema.statics.sendNotifications = function (callback) {
                 sendNotifications(newReminders);
             }
         });
-    // this.remindAt >= new Date() && this.remindAt < new Date(Date.now() + 60 * 1000)
     function sendNotifications(newReminders) {
-        console.log(`entered for sms`);;
         newReminders.forEach(function (newReminder) {
             if (newReminder.sendOnEmail && newReminder.sendOnMobile) {
                 const options = {
@@ -126,9 +120,6 @@ newReminderSchema.statics.sendNotifications = function (callback) {
                 }
                 sendMail();
             }
-
-
-            // console.log(`email sent to ${newReminder.email}`);
         });
 
 

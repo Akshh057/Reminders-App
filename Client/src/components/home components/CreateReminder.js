@@ -2,15 +2,17 @@ import React, { useContext, useEffect, useState } from "react";
 import "./createReminder.css";
 import axios from "axios";
 import UserAuthContext from "../../context/UserAuthContext";
-import create from "./create.png";
+import API from '../../axiosCalls'
+//import create from "./create.png";
 const CreateReminder = () => {
   const { state } = useContext(UserAuthContext);
+  console.log(state)
   const [newReminder, setNewReminder] = useState({
     title: "",
     d: "",
     description: "",
-    email: state.user.email,
-    mobile: state.user.mobile,
+    email: state?.user?.email,
+    mobile: state?.user?.mobile,
     sendOnEmail: false,
     sendOnMobile: false,
   });
@@ -24,7 +26,7 @@ const CreateReminder = () => {
     console.log(newReminder);
   }, [newReminder]);
   const save = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const config = {
       headers: {
         "Content-type": "application/json",
@@ -41,17 +43,11 @@ const CreateReminder = () => {
         return Promise.reject(error);
       }
     );
-    const res = await axios.post(
-      "https://localhost:5000/users/newReminder",
-      newReminder,
-      config
-    );
+    const res = await API.createReminder(newReminder, config)
+    alert("Reminder Created!!");
     console.log(res.data);
     console.log(newReminder);
     console.log(state.user);
-  };
-  const check = () => {
-    console.log("entered");
   };
   return (
     <div className="createReminder__main1">
@@ -107,7 +103,7 @@ const CreateReminder = () => {
                     })
                   }
                 />
-                <label for="phone">Phone</label>
+                <label htmlfor="phone">Phone</label>
                 <input
                   type="checkbox"
                   title="phone"
@@ -121,7 +117,7 @@ const CreateReminder = () => {
                     })
                   }
                 />
-                <label for="Email">Email</label>
+                <label htmlfor="Email">Email</label>
               </div>
               <input type="submit" />
             </form>
