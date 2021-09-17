@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl = 'https://eday-reminders.herokuapp.com/'
+const baseUrl = 'https://eday-reminders.herokuapp.com'
 const API = {
     createReminder: function (newReminder, config) {
         return axios.post(`${baseUrl}/users/newReminder`, newReminder, config)
