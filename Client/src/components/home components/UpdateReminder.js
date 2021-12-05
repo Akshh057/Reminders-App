@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./createReminder.css";
+import "../Styles/createReminder.css";
 import axios from "axios";
 import API from "../../axiosCalls";
 const UpdateReminder = (props) => {

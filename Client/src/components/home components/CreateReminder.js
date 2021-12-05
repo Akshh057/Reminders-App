@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import "./createReminder.css";
+import "../Styles/createReminder.css";
 import axios from "axios";
 import UserAuthContext from "../../context/UserAuthContext";
 import API from '../../axiosCalls'

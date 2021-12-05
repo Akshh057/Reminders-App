@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
-import './userprofile.css';
-import user from './user2.png';
+import '../Styles/userprofile.css';
+import user from '../Assests/images/user2.png';
 import UserAuthContext from '../../context/UserAuthContext';
 const Userprofile = () => {
     const { state } = useContext(UserAuthContext);

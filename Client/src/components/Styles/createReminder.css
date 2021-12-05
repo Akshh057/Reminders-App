@@ -17,7 +17,7 @@
 .createReminder__bg{
     height: 100%;
     width: 36%;
-    background-image: url('./comment.svg');
+    background-image: url('../Assests/comment.svg');
     /* border: 1px solid red; */
 }
 .createReminder__form{

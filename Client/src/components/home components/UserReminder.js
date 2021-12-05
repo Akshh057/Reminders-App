@@ -1,5 +1,5 @@
 import React, { useEffect, useContext, useState } from 'react'
-import './userReminder.css'
+import '../Styles/userReminder.css'
 import axios from 'axios'
 import UserAuthContext from '../../context/UserAuthContext';
 import { Link, withRouter } from "react-router-dom";

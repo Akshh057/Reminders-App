@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import UserAuthContext from '../../context/UserAuthContext';
-import './write.css';
-import write from './feedback.png'
+import '../Styles/write.css';
+import write from '../Assests/images//feedback.png'
 import axios from 'axios';
 const Write = () => {
     const { state } = useContext(UserAuthContext);
