@@ -144,7 +144,7 @@ module.exports = {
         id: user._id,
         name: user.name,
         email: user.email,
-        mobile:user.mobile
+        mobile: user.mobile
       });
     } catch (err) {
       res.status(500).json({ error: err.message });
@@ -178,7 +178,6 @@ module.exports = {
   fetchReminder: async (req, res) => {
     try {
       const { email } = req.query;
-      console.log(email);
       const reminder = await newReminder.find({ email: email });
       return res.json(reminder);
     }

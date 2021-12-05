@@ -15,6 +15,7 @@ import Write from "./components/home components/Write";
 import UserReminder from "./components/home components/UserReminder";
 import UpdateReminder from "./components/home components/UpdateReminder";
 import Userprofile from "./components/home components/Userprofile";
+import API from "./axiosCalls";
 
 function App() {
   const { dispatch } = useContext(UserAuthContext);
@@ -41,18 +42,12 @@ function App() {
           return Promise.reject(error);
         }
       );
-      const tokenRes = await axios.post(
-        "http://localhost:5000/users/tokenIsValid",
-        null
-      );
+      const tokenRes = await API.tokenIsValid();
 
       //if token is valid then get user data from private route
       // and send response data from API to state using dispatch
       if (tokenRes.data) {
-        const user = await axios.get(
-          "http://localhost:5000/users"
-        );
-        console.log(user.data);
+        const user = await API.getUser();
         dispatch({
           type: LOAD_USER,
           payload: user.data,

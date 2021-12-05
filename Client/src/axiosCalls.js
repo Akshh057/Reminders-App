@@ -1,12 +1,18 @@
 import axios from 'axios';
-// const baseUrl = 'https://eday-reminders.herokuapp.com'
-const baseUrl = 'http://localhost:5000'
+const baseUrl = 'https://eday-reminders.herokuapp.com'
+// const baseUrl = 'http://localhost:5000'
 const API = {
     login: function (loginData) {
         return axios.post(`${baseUrl}/users/login`, loginData)
     },
     register: function (registerData) {
         return axios.post(`${baseUrl}/users/register`, registerData)
+    },
+    tokenIsValid: function () {
+        return axios.post(`${baseUrl}/users/tokenIsValid`)
+    },
+    getUser: function () {
+        return axios.get(`${baseUrl}/users`)
     },
     createReminder: function (newReminder, config) {
         return axios.post(`${baseUrl}/users/newReminder`, newReminder, config)
