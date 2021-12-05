@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import './About.css';
+import './Styles/About.css';
 const About = () => {
     return (
         <div className="landing__pageab">

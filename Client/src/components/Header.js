@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import './Header.css';
+import './Styles/Header.css';
 import { Link } from 'react-router-dom';
 import UserAuthContext from '../context/UserAuthContext'
 import { LOGOUT_USER } from '../context/reducer';
@@ -45,10 +45,10 @@ const Header = (props) => {
         {state.isAuthenticated ?
           <Link onClick={logout} className='navlink' to="/">
             Logout
-        </Link> :
+          </Link> :
           <Link onClick={hamburger} className='navlink' to="/login">
             Login
-        </Link>
+          </Link>
         }
         <Link onClick={hamburger} className='navlink' to="/about">
           About us

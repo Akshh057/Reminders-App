@@ -20,7 +20,7 @@
     .landing__page__rightab{
       height: 60vh;
       width: 40%;
-      background: url('./about.svg');
+      background: url('../Assests/about.svg');
       background-size: contain;
       background-repeat: no-repeat;
       /* border: 1px solid red; */

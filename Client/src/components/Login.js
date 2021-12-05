@@ -1,20 +1,18 @@
 import React, { useState, useContext, useEffect } from "react";
-import axios from 'axios';
-//import { useHistory } from 'react-router-dom'
 import AuthUserContext from '../context/UserAuthContext';
 import { withRouter } from 'react-router-dom';
-import './Login.css';
+import './Styles/Login.css';
 import {
   REGISTER_USER,
   REGISTER_FAILED,
   LOGIN_USER,
   LOGIN_FAILED,
 } from '../context/reducer'
+import API from "../axiosCalls";
 
 const Login = (props) => {
   const { state, dispatch } = useContext(AuthUserContext);
   const [active, setActive] = useState('');
-  //const history = useHistory();
   const [registerData, setRegisterData] = useState({
     name: "",
     email: "",
@@ -52,7 +50,7 @@ const Login = (props) => {
   const signUp = async (e) => {
     e.preventDefault();
     try {
-      const registeredUser = await axios.post("http://localhost:5000/users/register", registerData);
+      const registeredUser = await API.register(registerData);
       dispatch({
         type: REGISTER_USER,
         payload: registeredUser.data,
@@ -71,7 +69,7 @@ const Login = (props) => {
   const signIn = async (e) => {
     e.preventDefault();
     try {
-      const loggedUser = await axios.post("http://localhost:5000/users/login", loginData);
+      const loggedUser = await API.login(loginData)
       dispatch({
         type: LOGIN_USER,
         payload: loggedUser.data,
@@ -140,7 +138,7 @@ const Login = (props) => {
               onChange={changeRegisterData}
             /* required */
             />
-            <button class="main_btn" type='submit'>Sign Up</button>
+            <button className="main_btn" type='submit'>Sign Up</button>
           </form>
         </div>
         <div className="form_container sign_in_container">
@@ -169,12 +167,12 @@ const Login = (props) => {
               onChange={changeLoginData}
             /* required */
             />
-            <button class="main_btn" type="submit">Sign in</button>
+            <button className="main_btn" type="submit">Sign in</button>
           </form>
         </div>
-        <div class="overlay_container">
-          <div class="overlay">
-            <div class="overlay_panel overlay_left">
+        <div className="overlay_container">
+          <div className="overlay">
+            <div className="overlay_panel overlay_left">
               <h1>Welcome Back!</h1>
               <p>To keep connected with us please login with your account.</p>
               <button
@@ -182,12 +180,12 @@ const Login = (props) => {
                   setServerError('');
                   setActive('');
                 }}
-                class="ghost"
+                className="ghost"
                 id="signIn">
                 Sign In
               </button>
             </div>
-            <div class="overlay_panel overlay_right">
+            <div className="overlay_panel overlay_right">
               <h1>Hello, Friend!</h1>
               <p>Create a new account and start journey with us</p>
               <button

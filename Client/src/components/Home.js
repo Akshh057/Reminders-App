@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import UserAuthContext from "../context/UserAuthContext";
-import "./Home.css";
+import "./Styles/Home.css";
 const Home = () => {
   const { state } = useContext(UserAuthContext);
   const auth = state.isAuthenticated;
@@ -50,7 +50,7 @@ const Home = () => {
         <div className="info">
           <h2>
             Never Miss your Special Occasions!
-            </h2>
+          </h2>
         </div>
         <div className="info2">
           <p>
@@ -61,7 +61,7 @@ const Home = () => {
           <Link to='/login'>
             <button className="info__btn">
               Get Started!
-          </button>
+            </button>
           </Link>
         </div>
       </div>
